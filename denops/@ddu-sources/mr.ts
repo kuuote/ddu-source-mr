@@ -1,9 +1,6 @@
-import {
-  BaseSource,
-  Item,
-} from "https://raw.githubusercontent.com/Shougo/ddu.vim/492abe087031f4ad777ca4e203d33796251a2981/denops/ddu/types.ts";
-import { Denops } from "https://raw.githubusercontent.com/Shougo/ddu.vim/492abe087031f4ad777ca4e203d33796251a2981/denops/ddu/deps.ts";
-import { ActionData } from "https://raw.githubusercontent.com/Shougo/ddu.vim/492abe087031f4ad777ca4e203d33796251a2981/denops/@ddu-kinds/file.ts";
+import { BaseSource, Item } from "https://deno.land/x/ddu_vim@v0.1.0/types.ts";
+import { Denops } from "https://deno.land/x/ddu_vim@v0.1.0/deps.ts";
+import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.1.0/file.ts#^";
 import {
   ensureArray,
   isString,
