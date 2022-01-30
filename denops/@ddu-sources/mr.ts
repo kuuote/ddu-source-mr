@@ -30,7 +30,7 @@ export class Source extends BaseSource<Params> {
           await args.denops.call(`mr#${kinds.at(idx)}#list`)
         ensureArray(result, isString);
         controller.enqueue(result.map((p) => ({
-          word: relative(dir, p),
+          word: args.sourceParams.current ? relative(dir, p) : p,
           action: {
             path: p,
           },
