@@ -11,6 +11,7 @@ const kinds = ["mrr", "mrw", "mru"];
 
 type Params = {
   kind: string;
+  current: boolean;
 };
 
 export class Source extends BaseSource<Params> {
@@ -24,7 +25,9 @@ export class Source extends BaseSource<Params> {
       async start(controller) {
         const dir = await fn.getcwd(args.denops) as string;
         const idx = kinds.indexOf(args.sourceParams.kind);
-        const result = await args.denops.call(`mr#${kinds.at(idx)}#list`);
+        const result = args.sourceParams.current ?
+          await args.denops.call('mr#filter', await args.denops.call(`mr#${kinds.at(idx)}#list`), `${dir}`) :
+          await args.denops.call(`mr#${kinds.at(idx)}#list`)
         ensureArray(result, isString);
         controller.enqueue(result.map((p) => ({
           word: relative(dir, p),
@@ -40,6 +43,7 @@ export class Source extends BaseSource<Params> {
   params(): Params {
     return {
       kind: "mru",
+      current: false,
     };
   }
 }
