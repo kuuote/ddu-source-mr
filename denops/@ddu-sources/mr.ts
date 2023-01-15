@@ -1,6 +1,6 @@
-import { BaseSource, Item } from "https://deno.land/x/ddu_vim@v0.1.0/types.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v0.1.0/deps.ts";
-import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.1.0/file.ts#^";
+import { BaseSource, Item } from "https://deno.land/x/ddu_vim@v2.0.0/types.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.0.0/deps.ts";
+import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.3.2/file.ts";
 import {
   ensureArray,
   isString,
@@ -25,9 +25,13 @@ export class Source extends BaseSource<Params> {
       async start(controller) {
         const dir = await fn.getcwd(args.denops) as string;
         const idx = kinds.indexOf(args.sourceParams.kind);
-        const result = args.sourceParams.current ?
-          await args.denops.call('mr#filter', await args.denops.call(`mr#${kinds.at(idx)}#list`), `${dir}`) :
-          await args.denops.call(`mr#${kinds.at(idx)}#list`)
+        const result = args.sourceParams.current
+          ? await args.denops.call(
+            "mr#filter",
+            await args.denops.call(`mr#${kinds.at(idx)}#list`),
+            `${dir}`,
+          )
+          : await args.denops.call(`mr#${kinds.at(idx)}#list`);
         ensureArray(result, isString);
         controller.enqueue(result.map((p) => ({
           word: args.sourceParams.current ? relative(dir, p) : p,
