@@ -1,11 +1,16 @@
-import { BaseSource, Item } from "https://deno.land/x/ddu_vim@v2.0.0/types.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.0.0/deps.ts";
+import { relative } from "https://deno.land/std@0.177.0/path/mod.ts";
 import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.3.2/file.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.2.0/deps.ts";
 import {
-  ensureArray,
+  ActionArguments,
+  ActionFlags,
+  BaseSource,
+  Item,
+} from "https://deno.land/x/ddu_vim@v2.2.0/types.ts";
+import {
+  assertArray,
   isString,
-} from "https://deno.land/x/unknownutil@v1.1.4/mod.ts";
-import { relative } from "https://deno.land/std@0.122.0/path/mod.ts#^";
+} from "https://deno.land/x/unknownutil@v2.1.0/mod.ts";
 
 const kinds = ["mrr", "mrw", "mru"];
 
@@ -16,6 +21,17 @@ type Params = {
 
 export class Source extends BaseSource<Params> {
   kind = "file";
+
+  actions = {
+    async mr_delete(args: ActionArguments<Params>) {
+      const fn = `mr#${args.sourceParams.kind}#delete`;
+      for (const item of args.items) {
+        const data = item.action as ActionData;
+        await args.denops.call(fn, data.path);
+      }
+      return ActionFlags.RefreshItems;
+    },
+  };
 
   gather(args: {
     denops: Denops;
@@ -32,7 +48,7 @@ export class Source extends BaseSource<Params> {
             `${dir}`,
           )
           : await args.denops.call(`mr#${kinds.at(idx)}#list`);
-        ensureArray(result, isString);
+        assertArray(result, isString);
         controller.enqueue(result.map((p) => ({
           word: args.sourceParams.current ? relative(dir, p) : p,
           action: {
