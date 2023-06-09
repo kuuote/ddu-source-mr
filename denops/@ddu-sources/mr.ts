@@ -1,11 +1,11 @@
-import { BaseSource, Item } from "https://deno.land/x/ddu_vim@v2.0.0/types.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v2.0.0/deps.ts";
-import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.3.2/file.ts";
+import { BaseSource, Item } from "https://deno.land/x/ddu_vim@v3.0.0/types.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.0.0/deps.ts";
+import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.5.0/file.ts";
 import {
-  ensureArray,
+  assertArray,
   isString,
-} from "https://deno.land/x/unknownutil@v1.1.4/mod.ts";
-import { relative } from "https://deno.land/std@0.122.0/path/mod.ts#^";
+} from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
+import { relative } from "https://deno.land/std@0.191.0/path/mod.ts";
 
 const kinds = ["mrr", "mrw", "mru"];
 
@@ -32,7 +32,7 @@ export class Source extends BaseSource<Params> {
             `${dir}`,
           )
           : await args.denops.call(`mr#${kinds.at(idx)}#list`);
-        ensureArray(result, isString);
+        assertArray(result, isString);
         controller.enqueue(result.map((p) => ({
           word: args.sourceParams.current ? relative(dir, p) : p,
           action: {
