@@ -6,12 +6,12 @@ License: zlib License
 ==============================================================================
 INTRODUCTION						*ddu-mr-introduction*
 
-This source provides |mr.vim| source for |ddu.vim|
+ddu source of MRU/MRW/MRR via mr.vim
 
 ==============================================================================
 INSTALL							*ddu-mr-install*
 
-Please install below plugins.
+Please install |ddu|, |ddu-kind-file|, |denops.vim|, and |mr.vim|
 
 https://github.com/Shougo/ddu.vim
 https://github.com/Shougo/ddu-kind-file
