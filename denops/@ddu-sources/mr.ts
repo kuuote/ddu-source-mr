@@ -1,11 +1,11 @@
-import { BaseSource, Item } from "https://deno.land/x/ddu_vim@v3.0.0/types.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.0.0/deps.ts";
+import { BaseSource, Item } from "https://deno.land/x/ddu_vim@v3.2.4/types.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.2.4/deps.ts";
 import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.5.0/file.ts";
 import {
   assertArray,
   isString,
 } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
-import { relative } from "https://deno.land/std@0.191.0/path/mod.ts";
+import { relative } from "https://deno.land/std@0.192.0/path/mod.ts";
 
 const kinds = ["mrr", "mrw", "mru"];
 
