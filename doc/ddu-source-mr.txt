@@ -1,15 +1,15 @@
-*ddu-mr.txt*	mr.vim source for ddu.vim
+*ddu-source-mr.txt*	mr.vim source for ddu.vim
 
 Author: kuuote <znmxodq1@gmail.com>
 License: zlib License
 
 ==============================================================================
-INTRODUCTION						*ddu-mr-introduction*
+INTRODUCTION	*ddu-source-mr-introduction*
 
 ddu source of MRU/MRW/MRR via mr.vim
 
 ==============================================================================
-INSTALL							*ddu-mr-install*
+INSTALL		*ddu-source-mr-install*
 
 Please install |ddu|, |ddu-kind-file|, |denops.vim|, and |mr.vim|
 
@@ -19,7 +19,7 @@ https://github.com/vim-denops/denops.vim
 https://github.com/lambdalisue/mr.vim
 
 ==============================================================================
-EXAMPLES						*ddu-mr-examples*
+EXAMPLES	*ddu-source-mr-examples*
 >
 >
   " default
@@ -32,14 +32,17 @@ EXAMPLES						*ddu-mr-examples*
   call ddu#start({'sources': [{'name': 'mr', 'params': {'current': v:true}}]})
 
 ==============================================================================
-PARAMS							*ddu-mr-params*
+PARAMS		*ddu-source-mr-params*
 
-				    			*ddu-mr-param-kind*
+		*ddu-source-mr-param-kind*
+
 kind		(string)
 		source kind of |mr.vim|
 
 		Default: "mru"
 		Available: One of "mru", "mrw", "mrr"
+
+		*ddu-source-mr-param-current*
 
 current		(boolean)
 		The target is the current directory.
