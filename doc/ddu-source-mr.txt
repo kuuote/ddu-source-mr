@@ -6,7 +6,7 @@ License: zlib License
 ==============================================================================
 INTRODUCTION	*ddu-source-mr-introduction*
 
-ddu source of MRU/MRW/MRR via mr.vim
+|ddu-sources| of Most Recently used/writed/repository via mr.vim
 
 ==============================================================================
 INSTALL		*ddu-source-mr-install*
