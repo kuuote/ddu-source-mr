@@ -26,7 +26,10 @@ export class Source extends BaseSource<Params> {
           is.ArrayOf(is.String),
         ).map((path) => ({
           word: path,
-          action: { path },
+          action: {
+            path,
+            isDirectory: args.sourceParams.kind == "mrr",
+          },
         }));
         controller.enqueue(result);
         controller.close();
