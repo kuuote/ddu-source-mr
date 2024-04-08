@@ -42,6 +42,9 @@ kind		(string)
 ==============================================================================
 ACTIONS		*ddu-source-mr-actions*
 
+ddu-source-mr uses |ddu-kind-file| actions.
+You can see their actions in |ddu-kind-file-actions|.
+
 		*ddu-source-mr-action-delete*
 delete
 	Call |mr#mru#delete()| or functions of its kind.
