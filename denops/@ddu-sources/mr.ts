@@ -22,7 +22,7 @@ export class Source extends BaseSource<Params> {
     return new ReadableStream({
       async start(controller) {
         const result = ensure(
-          await args.denops.call(`mr#${args.sourceParams.kind}#list`),
+          await args.denops.dispatch("mr", `${args.sourceParams.kind}:list`),
           is.ArrayOf(is.String),
         ).map((path) => ({
           word: path,
