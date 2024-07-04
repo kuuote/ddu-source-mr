@@ -16,7 +16,7 @@ Please install |ddu|, |ddu-kind-file|, |denops.vim|, and |mr.vim|
 https://github.com/Shougo/ddu.vim
 https://github.com/Shougo/ddu-kind-file
 https://github.com/vim-denops/denops.vim
-https://github.com/lambdalisue/mr.vim
+https://github.com/lambdalisue/vim-mr
 
 ==============================================================================
 EXAMPLES	*ddu-source-mr-examples*
@@ -37,7 +37,7 @@ kind		(string)
 		source kind of |mr.vim|
 
 		Default: "mru"
-		Available: One of "mru", "mrw", "mrr"
+		Available: One of "mru", "mrw", "mrr", "mrd"
 
 ==============================================================================
 ACTIONS		*ddu-source-mr-actions*

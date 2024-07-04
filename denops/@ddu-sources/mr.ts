@@ -13,6 +13,8 @@ type Params = {
   kind: string;
 };
 
+const isDirectory = new Set(["mrr", "mrd"]);
+
 export class Source extends BaseSource<Params> {
   override kind = "file";
 
@@ -28,7 +30,7 @@ export class Source extends BaseSource<Params> {
           word: path,
           action: {
             path,
-            isDirectory: args.sourceParams.kind == "mrr",
+            isDirectory: isDirectory.has(args.sourceParams.kind),
           },
         }));
         controller.enqueue(result);
