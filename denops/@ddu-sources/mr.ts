@@ -4,10 +4,10 @@ import {
   Actions,
   BaseSource,
   Item,
-} from "https://deno.land/x/ddu_vim@v3.4.4/types.ts";
-import { GatherArguments } from "https://deno.land/x/ddu_vim@v3.4.4/base/source.ts";
-import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.5.3/file.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.4.0/mod.ts";
+} from "https://deno.land/x/ddu_vim@v4.1.1/types.ts";
+import { GatherArguments } from "https://deno.land/x/ddu_vim@v4.1.1/base/source.ts";
+import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.7.1/file.ts";
+import { ensure, is } from "jsr:@core/unknownutil@3.18.1";
 
 type Params = {
   kind: string;
