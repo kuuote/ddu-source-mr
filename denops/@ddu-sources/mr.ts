@@ -1,13 +1,15 @@
 import {
-  ActionArguments,
+  type ActionArguments,
   ActionFlags,
-  Actions,
+  type Actions,
+  type Item,
+} from "jsr:@shougo/ddu-vim@^6.1.0/types";
+import {
   BaseSource,
-  Item,
-} from "https://deno.land/x/ddu_vim@v4.1.1/types.ts";
-import { GatherArguments } from "https://deno.land/x/ddu_vim@v4.1.1/base/source.ts";
-import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.7.1/file.ts";
-import { ensure, is } from "jsr:@core/unknownutil@3.18.1";
+  type GatherArguments,
+} from "jsr:@shougo/ddu-vim@^6.1.0/source";
+import type { ActionData } from "jsr:@shougo/ddu-kind-file@^0.9.0";
+import { ensure, is } from "jsr:@core/unknownutil@^4.3.0";
 
 type Params = {
   kind: string;
