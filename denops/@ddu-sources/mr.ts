@@ -31,8 +31,15 @@ export class Source extends BaseSource<Params> {
           await deadline(
             args.denops.dispatch("mr", `${args.sourceParams.kind}:list`),
             1000,
-          ).catch(() => {
-            printError(args.denops, "Failed to call vim-mr denops module. Please check it.");
+          ).catch((e: unknown) => {
+            if (e instanceof DOMException) {
+              printError(
+                args.denops,
+                "Failed to call vim-mr denops module. Please check 'runtimepath' and plugin version.",
+              );
+            } else {
+              printError(args.denops, e);
+            }
             return [];
           }),
           is.ArrayOf(is.String),
