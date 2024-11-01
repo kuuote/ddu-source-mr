@@ -1,15 +1,17 @@
+import { ensure, is } from "jsr:@core/unknownutil@^4.3.0";
+import type { ActionData } from "jsr:@shougo/ddu-kind-file@^0.9.0";
+import {
+  BaseSource,
+  type GatherArguments,
+} from "jsr:@shougo/ddu-vim@^6.1.0/source";
 import {
   type ActionArguments,
   ActionFlags,
   type Actions,
   type Item,
 } from "jsr:@shougo/ddu-vim@^6.1.0/types";
-import {
-  BaseSource,
-  type GatherArguments,
-} from "jsr:@shougo/ddu-vim@^6.1.0/source";
-import type { ActionData } from "jsr:@shougo/ddu-kind-file@^0.9.0";
-import { ensure, is } from "jsr:@core/unknownutil@^4.3.0";
+import { printError } from "jsr:@shougo/ddu-vim@^6.1.0/utils";
+import { deadline } from "jsr:@std/async@^1.0.0/deadline";
 
 type Params = {
   kind: string;
@@ -26,7 +28,13 @@ export class Source extends BaseSource<Params> {
     return new ReadableStream({
       async start(controller) {
         const result = ensure(
-          await args.denops.dispatch("mr", `${args.sourceParams.kind}:list`),
+          await deadline(
+            args.denops.dispatch("mr", `${args.sourceParams.kind}:list`),
+            1000,
+          ).catch(() => {
+            printError(args.denops, "Failed to call vim-mr denops module. Please check it.");
+            return [];
+          }),
           is.ArrayOf(is.String),
         ).map((path) => ({
           word: path,
